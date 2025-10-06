@@ -31,20 +31,20 @@ class Grid():
 
         if not isinstance(value, tuple) or len(value) != 2:
             raise TypeError("Position must be a tuple of length 2")
-        
+
         x, y = value
         x = int(x)
         y = int(y)
-        
+
         x = max(0, min(x, self.width - 1))
         y = max(0, min(y, self.height - 1))
-        
+
         self._current_pos = (x, y)
 
     def move_forward(self) -> Tuple[int, int]:
 
         x, y = self.current_pos
-        
+
         if self.current_direction == Facing.RIGHT:
             new_pos = (x + 1, y)
         elif self.current_direction == Facing.UP:
@@ -55,7 +55,7 @@ class Grid():
             new_pos = (x, y - 1)
         else:
             new_pos = (x, y)
-        
+
         self.current_pos = new_pos
         return new_pos
 
@@ -87,11 +87,10 @@ class Grid():
 
 
 class AdvancedGrid(Grid):
-    
-    
+
     def __init__(self, width: int, height: int, enemy_pos: tuple):
         super().__init__(width, height, enemy_pos)
-        self.steps: int = 0  
+        self.steps: int = 0
 
     def move_forward(self) -> Tuple[int, int]:
 
